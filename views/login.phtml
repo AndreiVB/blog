@@ -1,0 +1,65 @@
+<?php $title = "The bookshelf - Login" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <div class="container-login">
+    <div class="wrapper-login d-flex flex-col">
+      <div class="login-title">
+        <h1 class="text-center">The Bookshelf</h1>
+        <small class="text-center">Respect for the people and books</small>
+      </div>
+
+      <div class="login-holder">
+        <h2 class="text-center">Hello <span id="user-name-true">reader</span></h2>
+        <p class="text-center">Enter your username and password</p>
+
+        <form action="login.php" id="form-login" method="POST"
+          class="form-login d-flex flex-col justify-center align-center">
+
+          <div class="form-control-login">
+            <input type="text" placeholder="Username" id="username-login" name="username" />
+          </div>
+
+          <div class="form-control-login">
+            <input type="password" placeholder="Password" id="password-login" name="password" />
+          </div>
+          <div class="account-login">
+            <button type="submit" value="submit" href="login.php" id="login-button" class="my-account-link login-button"
+              value="Login">Login</button>
+          </div>
+
+          <?php if (isset($_SESSION) && !empty($_SESSION['error'])) {?> <div class="error-div">
+            <?php foreach ($_SESSION['error'] as $errors): ?>
+            <p class="error-p"><?= $errors?></p>
+            <?php  endforeach ?>
+          </div>
+          <?php }?>
+
+        </form>
+      </div>
+      <div class="no-account">
+        <p>You don't have an account? No worries.</p>
+        <p>You can make one right <a href="register.php" class="make-account">here!</a></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+
+  <script src="assets/js/login.js"></script>
+
+</body>
+
+<?php if(isset($_SESSION['error']) && !empty($_SESSION['error'])): ?>
+<?php unset($_SESSION['error']) ?>
+<?php endif; ?>
+
+
+</html>

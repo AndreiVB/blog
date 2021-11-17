@@ -1,0 +1,92 @@
+<?php $title = "The bookshelf - Register" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <div class="container-register">
+
+    <p><?php require 'partials/notifications.php'; ?></p>
+    <p><?php require 'partials/errors.php'; ?></p>
+
+    <div class="wrapper-register">
+      <div class="register-title">
+        <h1 class="text-center">The Bookshelf</h1>
+        <small class="text-center">Respect for the people and books</small>
+      </div>
+
+      <div class="register-holder">
+        <div class="register-title">
+          <h2>Add an user</h2>
+        </div>
+
+        <form action="admin-adduser.php" method="post" id="form-register"
+          class="form-register d-flex flex-col justify-center align-center">
+          <div class="form-control">
+            <input type="text" placeholder="Username" id="username-register" name="username" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <!--<small>Error message</small>-->
+          </div>
+
+          <div class="form-control">
+            <input type="text" placeholder="First name" id="firstname-register" name="first_name" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <!--<small>Error message</small>-->
+          </div>
+
+          <div class="form-control">
+            <input type="text" placeholder="Last name" id="lastname-register" name="last_name" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <!--<small>Error message</small>-->
+          </div>
+
+          <div class="form-control">
+            <input type="email" placeholder="user@email.com" id="email-register" name="email" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <!--<small>Error message</small>-->
+          </div>
+
+          <div class="form-control">
+            <input type="password" placeholder="Password" id="password-register" name="password" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <!--<small>Error message</small>-->
+          </div>
+          <button type="submit" value="Register">Add user</button>
+          
+         <?php if (isset($array) && $array > 0) {?>
+          <div class="error-div">
+            <?php foreach ($errors as $error): ?>
+            <p class="error-p"><?= "$error" ?></p>
+            <?php endforeach ?>
+          </div>
+          <?php }?>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/register.js"></script>
+  <?php
+  
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+             
+    ?>
+
+</body>
+
+</html>

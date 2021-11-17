@@ -1,0 +1,61 @@
+<?php $title = "The bookshelf - Add a post" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <?php if (isset($_SESSION) && !empty($_SESSION['user'])): ?>
+  <div class="container">
+
+    <p><?php require 'partials/notifications.php'; ?></p>
+    <p><?php require 'partials/errors.php'; ?></p>
+
+    <div class="post-wrapper">
+      <form method="post" action="addpost.php" class="form-addpost" id="form-addpost" enctype="multipart/form-data">
+        <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id'] ?>">
+
+        <fieldset>
+          <legend>Add a post</legend>
+          <div class="form-addtitle">
+
+            <label for="title">Title</label>
+            <div class="">
+              <input type="text" class="" required id="title" name="title" placeholder="Your title" value="">
+            </div>
+          </div>
+          <div class="form-addcontent">
+            <label for="content">Post content</label>
+            <textarea class="" required id="content" name="content" rows="3"></textarea>
+          </div>
+          <div class="form-addpicture">
+            <label for="picture" class="">Photo</label>
+            <div class="">
+              <input type="file" class="" id="picture" name="picture">
+
+            </div>
+          </div>
+          <button type="submit" class="btn btn-read">Add the post</button>
+
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+  <?php endif; ?>
+
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script  src="assets/js/main.js"></script>
+  <?php
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+    ?>
+</body>
+
+</html>

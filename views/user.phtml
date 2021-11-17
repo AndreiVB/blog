@@ -1,0 +1,87 @@
+<?php $title = "The bookshelf - User details" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <div class="container">
+
+    <p><?php require 'partials/notifications.php'; ?></p>
+    <p><?php require 'partials/errors.php'; ?></p>
+
+    <div class="wrapper-user-account">
+      <nav class="user-navbar">
+        <h4>My profile</h4>
+        <ul>
+          <li><a href="#user-account-settings" class="btn btn-read btn-active" id="btn-acc-settings">Account
+              settings</a>
+          </li>
+          <li><a href="#user-posts" class="btn btn-read" id="btn-my-posts">My posts</a></li>
+          <li><a href="addpost.php" class="btn btn-read">Add a post</a></li>
+          <li><a href="homepage.php" class="btn btn-read">Homepage</a></li>
+
+        </ul>
+      </nav>
+      <div class="user-active-option">
+        <div id="user-account-settings" class="show">
+
+          <p>Your details below</p>
+          <p>Username : <?= htmlspecialchars($user['nickname']) ?></p>
+          <p>First name : <?= htmlspecialchars($user['first_name']) ?></p>
+          <p>Last name : <?= htmlspecialchars($user['last_name']) ?></p>
+          <p>Email : <?= htmlspecialchars($user['email']) ?></p>
+
+        </div>
+
+
+
+
+        <div id="user-posts" class="hide">
+          <div class="posts-wrapper">
+            <?php foreach($posts as $post): ?>
+            <div class="post-content">
+              <h3 class="post-title"><?= htmlspecialchars($post['title']) ?></h3>
+              <p class="p-limited"><?= htmlspecialchars($post['content']) ?></p>
+              <a href="post-details.php?id=<?php echo $post['id'] ?>" class="btn btn-read">Read more</a>
+              <div class="posted-by">
+                <p>by <span><?= htmlspecialchars($user['nickname']) ?></span> <span
+                    class="posted-at"><?= date_create($post['created_at'])->format('d/M/Y H:i') ?></span></p>
+              </div>
+              <?php if ($post['picture'] !== null):?>
+              <div class="post-image">
+                <a href="#"><img src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+              </div>
+              <?php else: ?>
+              <div class="post-image hide">
+                <a href="#"><img src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+              </div>
+              <?php endif; ?>
+              <a href="edit-post.php?id=<?= $post['id'] ?>" class="btn btn-edit">Edit post</a>
+              <a href="delete-post.php?id=<?= $post['id'] ?>" class="btn btn-quit">Delete post</a>
+            </div>
+            <?php endforeach; ?>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/user.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+
+  <?php
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+    ?>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+Projet : blog
+Sujet : livres, événements, endroits à visiter
+
+Utilisateurs et admin : chaque utilisateur a son motte de passe comme son nickname
+ * users    mot de passe 
+    aaa          aaa
+    bbb          bbb
+    ccc          ccc
+   admin        admin
+
+Chaque utilisateur peut :
+ - rechercher dans la barre de navigation tous les posts par auteur ou titre ( avec ajax)
+ - lire toutes les posts
+ - ajouter des posts
+ - editer ses posts
+ - effacer ses posts
+ - voir les details de son compte
+
+L'admin peut : 
+ - rechercher dans la barre de navigation tous les posts par auteur ou titre ( avec ajax)
+ - lire toutes les posts
+ - ajouter des posts
+ - editer toutes les posts
+ - effacer toutes les posts
+ - voir les utilisateurs (avec pdo prepared declarations)
+ - voir les posts (avec pdo prepared declarations)
+ - ajouer des utilisateurs
+ - effacer des utilisateurs
+
+Partie front j'ai utilisé : Html, Css, Js, Jquery(que pour le fetch dans le nav accueil)
+Partie back j'ai utilisé : sql, php (pdo et poo)
+
+	

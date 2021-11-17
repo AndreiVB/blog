@@ -1,0 +1,104 @@
+<?php $title = "The bookshelf - Admin dashboard" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+
+  <div class="container">
+
+    <p class="php-notifications"><?php require 'partials/notifications.php'; ?></p>
+    <div class="admin-dashboard-wrapper">
+      <nav class="admin-navbar">
+        <ul class="admin-nav-ul d-flex">
+          <li class="admin-nav-li">
+            <a href="admin.php" class="btn btn-active">Dashboard</a>
+          </li>
+          <li class="admin-nav-li">
+            <a href="admin-posts.php" class="btn btn-read">Posts</a>
+          </li>
+          <li class="admin-nav-li">
+            <a href="admin-users.php" class="btn btn-read">Users</a>
+          </li>
+        </ul>
+      </nav>
+
+      <header id="admin-header">
+        <div class="admin-option">
+          <h3><i class="fas fa-cog"></i> Dashboard</h3>
+          <a class="btn btn-read" href="homepage.php">Homepage</a>
+        </div>
+      </header>
+
+      <section id="admin-actions">
+        <div class="admin-actions-holder d-flex">
+          <div>
+            <a href="admin-addpost.php" class="btn btn-read">
+              <i class="fas fa-plus"></i> Add Post
+            </a>
+          </div>
+          <div>
+            <a href="admin-adduser.php" class="btn btn-read">
+              <i class="fas fa-plus"></i> Add User
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="posts">
+
+        <div class="admin-latest-posts d-flex flex-col justify-center">
+          <div class="admin-latest-posts-header">
+            <h4 class="text-center">Latest Posts</h4>
+          </div>
+          <table class="text-center admin-table" id="table-admin-latest-posts">
+            <thead>
+              <tr>
+                <th>Post id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($posts as $post): ?>
+              <tr>
+                <td><?= htmlspecialchars($post['post_id']) ?></td>
+                <td><?= htmlspecialchars($post['title']) ?></td>
+                <td><?= htmlspecialchars($post['nickname']) ?></td>
+                <td><?= date_create($post['created_at'])->format('d/M/Y H:i') ?></td>
+                <td>
+                  <a href="post-details.php?id=<?= $post['post_id'] ?>" class="btn btn-read">Read more</a>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+
+          <div class="go-to-posts d-flex justify-center align-center">
+            <a href="admin-posts.php" class="btn btn-read">See all posts</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script  src="assets/js/main.js"></script>
+
+  <?php
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+    ?>
+
+</body>
+
+</html>

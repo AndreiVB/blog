@@ -1,0 +1,63 @@
+<?php $title = "The bookshelf - Post details" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <div class="container">
+
+    <div class="posts-wrapper d-flex flex-col">
+      <div class="showcase justify-center">
+        <div class="showcase-banner d-flex flex-col align-center justify-center text-center">
+          <div class="showcase-banner-holder">
+            <h3>“The reading of all good books is like conversation with the finest people of the past centuries.”</h3>
+            <p><i>René Descartes </i></p>
+          </div>
+        </div>
+      </div>
+
+      <section id="post-details">
+        <div class="post-content">
+
+          <div class="post-content">
+            <h3 class="post-title"><?= htmlspecialchars($post['title']) ?></h3>
+            <p><?= htmlspecialchars($post['content']) ?></p>
+
+            <div class="posted-by">
+              <p>by <span><?= htmlspecialchars($post['nickname']) ?></span> <span
+                  class="posted-at"><?= date_create($post['created_at'])->format('d/M/Y H:i') ?></span></p>
+            </div>
+
+            <div class="post-details-social">
+              <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+              <a href="https://www.rss.com" target="_blank"><i class="fas fa-rss"></i></a>
+            </div>
+
+            <?php if ($post['picture'] !== null):?>
+            <div class="post-image">
+              <a href="#"><img src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+            </div>
+            <?php else: ?>
+            <div class="post-image hide">
+              <a href="#"><img src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+            </div>
+            <?php endif; ?>
+          </div>
+      </section>
+    </div>
+      </section>
+  </div>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script  src="assets/js/main.js"></script>
+
+</body>
+
+</html>

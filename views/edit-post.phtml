@@ -1,0 +1,65 @@
+<?php $title = "The bookshelf - Edit a post" ?>
+<?php require 'partials/head.php'; ?>
+
+
+<body>
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <?php if (isset($_SESSION) && !empty($_SESSION['user'])): ?>
+  <div class="container">
+
+    <p><?php require 'partials/notifications.php'; ?></p>
+    <p><?php require 'partials/errors.php'; ?></p>
+
+    <div class="post-wrapper">
+      <form method="post" action="edit-post.php" class="form-addpost" id="form-addpost" enctype="multipart/form-data">
+
+        <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id'] ?>">
+        <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+
+
+        <fieldset>
+          <legend>Modify your post</legend>
+          <div class="form-addtitle">
+
+            <label for="title">Title</label>
+            <div>
+              <input type="text" required id="title" name="title" placeholder="Your title"
+                value="<?= $post["title"] ?>">
+            </div>
+          </div>
+          <div class="form-addcontent">
+            <label for="content">Post content</label>
+            <textarea class="" required id="content" name="content" rows="3"><?= $post["content"] ?></textarea>
+          </div>
+          <div class="form-addpicture">
+            <label for="picture">Photo</label>
+            <div>
+              <input type="file" id="picture" name="picture">
+              <input type="hidden" id="old-picture" name="old-picture" value="<?= $post["picture"] ?>">
+
+            </div>
+          </div>
+          <button type="submit" class="btn btn-edit">Modify the post</button>
+
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script  src="assets/js/main.js"></script>
+  <?php
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+    ?>
+</body>
+
+</html>

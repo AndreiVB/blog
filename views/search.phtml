@@ -1,0 +1,77 @@
+<?php $title = "The bookshelf - Search posts" ?>
+<?php require 'partials/head.php'; ?>
+
+<body>
+  <header class="header">
+    <?php require 'partials/navbar.php'; ?>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <?php require 'partials/notifications.php'; ?>
+      <div class="container-wrapper">
+        <div class="showcase justify-center">
+          <div class="showcase-banner d-flex flex-col align-center justify-center text-center">
+            <div class="showcase-banner-holder">
+              <h3>“A reader lives a thousand lives before he dies . . . The man who never reads lives only one.”</h3>
+              <p><i>George R.R. Martin</i></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="latest-posts">
+          <h2 class="to-uppercase">Search results</h2>
+        </div>
+
+        <section>
+          <div id="" class="posts-wrapper">
+            <?php if(!empty($posts)) {?>
+            <?php foreach($posts as $post): ?>
+            <div class="post-content">
+              <h3 class="post-title"><?= htmlspecialchars($post['title']) ?></h3>
+              <p class="p-limited"><?= htmlspecialchars($post['content']) ?></p>
+              <a href="post-details.php?id=<?php echo $post['post_id'] ?>" class="btn btn-read">Read more</a>
+
+              <div class="posted-by">
+                <p>by <span><?= htmlspecialchars($post['nickname']) ?></span> <span
+                    class="posted-at"><?= date_create($post['created_at'])->format('d/M/Y H:i') ?></span></p>
+              </div>
+              <?php if ($post['picture'] !== null):?>
+              <div class="post-image">
+                <a href="post-details.php?id=<?= $post['post_id'] ?>"><img
+                    src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+              </div>
+              <?php else: ?>
+              <div class="post-image hide">
+                <a href="post-details.php?id=<?= $post['post_id'] ?>"><img
+                    src="images/posts/<?= htmlspecialchars($post['picture']) ?>" alt="an image"></a>
+              </div>
+              <?php endif; ?>
+            </div>
+            <?php endforeach; ?>
+            <?php  } ?>
+            <a id="btn-to-top"><i class="fas fa-arrow-up"></i></a>
+          </div>
+        </section>
+
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <?php require 'partials/footer.php'; ?>
+  </footer>
+  <script  src="assets/js/main.js"></script>
+  <script  src="assets/js/btn-top.js"></script>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+  <?php   
+        unset($_SESSION['info']);
+        unset($_SESSION['error']);
+    ?>
+</body>
+
+</html>
