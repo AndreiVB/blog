@@ -30,4 +30,4 @@ L'admin peut :
 Partie front j'ai utilisé : Html, Css, Js, Jquery(que pour le fetch dans le nav accueil)
 Partie back j'ai utilisé : sql, php (pdo et poo)
 
-	
+	salut andrei
